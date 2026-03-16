@@ -1,0 +1,28 @@
+aid: nudge-security
+name: Nudge Security
+description: >-
+  Nudge Security is a SaaS security and governance platform that discovers all
+  SaaS applications used across an organization and helps security teams manage
+  OAuth grants, enforce security policies, and reduce SaaS risk without blocking
+  productivity.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SaaS Security
+  - Governance
+  - OAuth
+  - Security
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/nudge-security/refs/heads/main/apis.yml
+created: '2026-03-16'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.nudgesecurity.com/
+  - type: Documentation
+    url: https://docs.nudgesecurity.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
