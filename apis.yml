@@ -10,16 +10,16 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - SaaS Management
-  - SaaS Security
-  - Shadow IT
+  - Access Management
+  - AI Security
+  - Compliance
   - Governance
   - OAuth
+  - SaaS Management
+  - SaaS Security
   - Security
+  - Shadow IT
   - SSPM
-  - AI Security
-  - Access Management
-  - Compliance
 url: >-
   https://raw.githubusercontent.com/api-evangelist/nudge-security/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -36,10 +36,10 @@ apis:
       API is rate limited to 1200 requests per 5-minute period.
     humanURL: https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
     tags:
-      - SaaS Security
       - Discovery
-      - OAuth
       - Governance
+      - OAuth
+      - SaaS Security
     properties:
       - url: https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
         type: Documentation
