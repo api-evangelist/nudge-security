@@ -23,28 +23,38 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/nudge-security/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-03-27'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: nudge-security:rest-api
     name: Nudge Security API
     description: >-
       The Nudge Security REST API enables programmatic access to retrieve data
-      about apps, accounts, security events, fields, user groups, labels, and
-      notifications. It supports integration with SIEM, SOAR, and ticketing
-      systems, and allows management of custom fields and classifications. The
-      API is rate limited to 1200 requests per 5-minute period.
+      about apps, accounts, OAuth grants, security events, fields, users, user
+      groups, labels, notifications, findings, app-to-app integrations, app
+      instances, AI sessions and prompts, and the browser extension. It
+      supports integration with SIEM, SOAR, and ticketing systems, and allows
+      management of custom fields and classifications. The API is rate limited
+      to 1200 requests per 5-minute period.
     humanURL: https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
+    baseURL: https://api.nudgesecurity.io/api/1.0
     tags:
       - Discovery
       - Governance
       - OAuth
       - SaaS Security
+      - Apps
+      - Accounts
+      - Events
     properties:
-      - url: https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
-        type: Documentation
-      - url: https://help.nudgesecurity.com/en/collections/10835744-integrations-and-api-configuration
-        type: GettingStarted
+      - type: Documentation
+        url: https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
+      - type: Reference
+        url: https://nudgesecurity.readme.io/reference
+      - type: GettingStarted
+        url: https://help.nudgesecurity.com/en/collections/10835744-integrations-and-api-configuration
+      - type: OpenAPI
+        url: openapi/nudge-security-openapi.yml
 common:
   - type: Website
     url: https://www.nudgesecurity.com/
