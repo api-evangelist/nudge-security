@@ -1,0 +1,13 @@
+{
+  "repo": "nudge-security",
+  "feeds": [
+    {
+      "source": "https://www.nudgesecurity.com/blog",
+      "feed_url": "https://www.nudgesecurity.com/post/rss.xml",
+      "saved": 10,
+      "title": "Nudge Security Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:32:55Z"
+}
