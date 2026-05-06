@@ -1,0 +1,679 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nudge Security API
+  description: The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants,
+    security events, fields, users, user groups, labels, notifications, findings, playbooks, app-to-app integrations, app
+    instances, AI sessions and prompts, and the browser extension. It supports integration with SIEM, SOAR, and ticketing
+    systems and allows management of custom fields and classifications. The API is rate limited to 1200 requests per 5-minute
+    period. API tokens auto-expire after 4 weeks of no use.
+  tags:
+  - Nudge
+  - Security
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: nudge-security
+    baseUri: https://api.nudgesecurity.io/api/1.0
+    description: Nudge Security API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{NUDGE_SECURITY_TOKEN}}'
+    resources:
+    - name: apps
+      path: /apps
+      operations:
+      - name: get-apps
+        method: GET
+        description: Search apps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: apps-app-id
+      path: /apps/{app_id}
+      operations:
+      - name: get-apps-app-id
+        method: GET
+        description: Get app
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: apps-app-category-app-id
+      path: /apps/app-category/{app_id}
+      operations:
+      - name: post-apps-app-category-app-id
+        method: POST
+        description: Set app category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts
+      path: /accounts
+      operations:
+      - name: get-accounts
+        method: GET
+        description: Search accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-account-id
+      path: /accounts/{account_id}
+      operations:
+      - name: get-accounts-account-id
+        method: GET
+        description: Get account
+        inputParameters:
+        - name: account_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oauth-grants
+      path: /oauth-grants
+      operations:
+      - name: get-oauth-grants
+        method: GET
+        description: Search OAuth grants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oauth-grants-grant-id
+      path: /oauth-grants/{grant_id}
+      operations:
+      - name: get-oauth-grants-grant-id
+        method: GET
+        description: Get OAuth grant
+        inputParameters:
+        - name: grant_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events
+      path: /events
+      operations:
+      - name: get-events
+        method: GET
+        description: Search events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events-event-id
+      path: /events/{event_id}
+      operations:
+      - name: get-events-event-id
+        method: GET
+        description: Get event
+        inputParameters:
+        - name: event_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /users
+      operations:
+      - name: get-users
+        method: GET
+        description: Search users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-groups
+      path: /user-groups
+      operations:
+      - name: get-user-groups
+        method: GET
+        description: Search user groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-groups-group-id-members
+      path: /user-groups/{group_id}/members
+      operations:
+      - name: get-user-groups-group-id-members
+        method: GET
+        description: List user group members
+        inputParameters:
+        - name: group_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: notifications
+      path: /notifications
+      operations:
+      - name: get-notifications
+        method: GET
+        description: Search notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: fields
+      path: /fields
+      operations:
+      - name: get-fields
+        method: GET
+        description: Search fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-fields
+        method: POST
+        description: Create field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: labels
+      path: /labels
+      operations:
+      - name: get-labels
+        method: GET
+        description: Search labels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-labels
+        method: POST
+        description: Create label
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: findings
+      path: /findings
+      operations:
+      - name: get-findings
+        method: GET
+        description: Search findings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: app-to-app-integrations
+      path: /app-to-app-integrations
+      operations:
+      - name: get-app-to-app-integrations
+        method: GET
+        description: Search app-to-app integrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: nudge-security-rest
+    description: REST adapter for Nudge Security API.
+    resources:
+    - path: /apps
+      name: get-apps
+      operations:
+      - method: GET
+        name: get-apps
+        description: Search apps
+        call: nudge-security.get-apps
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /apps/{app_id}
+      name: get-apps-app-id
+      operations:
+      - method: GET
+        name: get-apps-app-id
+        description: Get app
+        call: nudge-security.get-apps-app-id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /apps/app-category/{app_id}
+      name: post-apps-app-category-app-id
+      operations:
+      - method: POST
+        name: post-apps-app-category-app-id
+        description: Set app category
+        call: nudge-security.post-apps-app-category-app-id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts
+      name: get-accounts
+      operations:
+      - method: GET
+        name: get-accounts
+        description: Search accounts
+        call: nudge-security.get-accounts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{account_id}
+      name: get-accounts-account-id
+      operations:
+      - method: GET
+        name: get-accounts-account-id
+        description: Get account
+        call: nudge-security.get-accounts-account-id
+        with:
+          account_id: rest.account_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /oauth-grants
+      name: get-oauth-grants
+      operations:
+      - method: GET
+        name: get-oauth-grants
+        description: Search OAuth grants
+        call: nudge-security.get-oauth-grants
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /oauth-grants/{grant_id}
+      name: get-oauth-grants-grant-id
+      operations:
+      - method: GET
+        name: get-oauth-grants-grant-id
+        description: Get OAuth grant
+        call: nudge-security.get-oauth-grants-grant-id
+        with:
+          grant_id: rest.grant_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /events
+      name: get-events
+      operations:
+      - method: GET
+        name: get-events
+        description: Search events
+        call: nudge-security.get-events
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /events/{event_id}
+      name: get-events-event-id
+      operations:
+      - method: GET
+        name: get-events-event-id
+        description: Get event
+        call: nudge-security.get-events-event-id
+        with:
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users
+      name: get-users
+      operations:
+      - method: GET
+        name: get-users
+        description: Search users
+        call: nudge-security.get-users
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /user-groups
+      name: get-user-groups
+      operations:
+      - method: GET
+        name: get-user-groups
+        description: Search user groups
+        call: nudge-security.get-user-groups
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /user-groups/{group_id}/members
+      name: get-user-groups-group-id-members
+      operations:
+      - method: GET
+        name: get-user-groups-group-id-members
+        description: List user group members
+        call: nudge-security.get-user-groups-group-id-members
+        with:
+          group_id: rest.group_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /notifications
+      name: get-notifications
+      operations:
+      - method: GET
+        name: get-notifications
+        description: Search notifications
+        call: nudge-security.get-notifications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /fields
+      name: get-fields
+      operations:
+      - method: GET
+        name: get-fields
+        description: Search fields
+        call: nudge-security.get-fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /fields
+      name: post-fields
+      operations:
+      - method: POST
+        name: post-fields
+        description: Create field
+        call: nudge-security.post-fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /labels
+      name: get-labels
+      operations:
+      - method: GET
+        name: get-labels
+        description: Search labels
+        call: nudge-security.get-labels
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /labels
+      name: post-labels
+      operations:
+      - method: POST
+        name: post-labels
+        description: Create label
+        call: nudge-security.post-labels
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /findings
+      name: get-findings
+      operations:
+      - method: GET
+        name: get-findings
+        description: Search findings
+        call: nudge-security.get-findings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /app-to-app-integrations
+      name: get-app-to-app-integrations
+      operations:
+      - method: GET
+        name: get-app-to-app-integrations
+        description: Search app-to-app integrations
+        call: nudge-security.get-app-to-app-integrations
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: nudge-security-mcp
+    transport: http
+    description: MCP adapter for Nudge Security API for AI agent use.
+    tools:
+    - name: get-apps
+      description: Search apps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-apps
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-apps-app-id
+      description: Get app
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-apps-app-id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-apps-app-category-app-id
+      description: Set app category
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: nudge-security.post-apps-app-category-app-id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-accounts
+      description: Search accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-accounts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-accounts-account-id
+      description: Get account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-accounts-account-id
+      with:
+        account_id: tools.account_id
+      inputParameters:
+      - name: account_id
+        type: string
+        description: account_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-oauth-grants
+      description: Search OAuth grants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-oauth-grants
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-oauth-grants-grant-id
+      description: Get OAuth grant
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-oauth-grants-grant-id
+      with:
+        grant_id: tools.grant_id
+      inputParameters:
+      - name: grant_id
+        type: string
+        description: grant_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-events
+      description: Search events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-events
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-events-event-id
+      description: Get event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-events-event-id
+      with:
+        event_id: tools.event_id
+      inputParameters:
+      - name: event_id
+        type: string
+        description: event_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-users
+      description: Search users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-users
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-groups
+      description: Search user groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-user-groups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-groups-group-id-members
+      description: List user group members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-user-groups-group-id-members
+      with:
+        group_id: tools.group_id
+      inputParameters:
+      - name: group_id
+        type: string
+        description: group_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-notifications
+      description: Search notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-notifications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-fields
+      description: Search fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-fields
+      description: Create field
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: nudge-security.post-fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-labels
+      description: Search labels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-labels
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-labels
+      description: Create label
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: nudge-security.post-labels
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-findings
+      description: Search findings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-findings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-app-to-app-integrations
+      description: Search app-to-app integrations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security.get-app-to-app-integrations
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    NUDGE_SECURITY_TOKEN: NUDGE_SECURITY_TOKEN
