@@ -74,6 +74,12 @@ common:
     url: https://www.nudgesecurity.com/faqs
   - type: Product
     url: https://www.nudgesecurity.com/product
+integrations:
+  - name: Microsoft 365
+  - name: Google Workspace
+  - name: Salesforce
+  - name: Snowflake
+  - name: Zoom
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
