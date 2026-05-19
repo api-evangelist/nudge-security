@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nudge Security API — Users
+  description: 'Nudge Security API — Users. 1 operations. Lead operation: Search users. Self-contained Naftiko capability
+    covering one Nudge Security business surface.'
+  tags:
+  - Nudge Security
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NUDGE_SECURITY_API_KEY: NUDGE_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: nudge-security-users
+    baseUri: https://api.nudgesecurity.io/api/1.0
+    description: Nudge Security API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: users
+      path: /users
+      operations:
+      - name: get
+        method: GET
+        description: Search users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.NUDGE_SECURITY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: nudge-security-users-rest
+    port: 8080
+    description: REST adapter for Nudge Security API — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/users
+      name: users
+      description: REST surface for users.
+      operations:
+      - method: GET
+        name: get
+        description: Search users
+        call: nudge-security-users.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: nudge-security-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Nudge Security API — Users. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: search-users
+      description: Search users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security-users.get
+      outputParameters:
+      - type: object
+        mapping: $.

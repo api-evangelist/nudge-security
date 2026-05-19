@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nudge Security API — Notifications
+  description: 'Nudge Security API — Notifications. 1 operations. Lead operation: Search notifications. Self-contained Naftiko
+    capability covering one Nudge Security business surface.'
+  tags:
+  - Nudge Security
+  - Notifications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NUDGE_SECURITY_API_KEY: NUDGE_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: nudge-security-notifications
+    baseUri: https://api.nudgesecurity.io/api/1.0
+    description: Nudge Security API — Notifications business capability. Self-contained, no shared references.
+    resources:
+    - name: notifications
+      path: /notifications
+      operations:
+      - name: get
+        method: GET
+        description: Search notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.NUDGE_SECURITY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: nudge-security-notifications-rest
+    port: 8080
+    description: REST adapter for Nudge Security API — Notifications. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/notifications
+      name: notifications
+      description: REST surface for notifications.
+      operations:
+      - method: GET
+        name: get
+        description: Search notifications
+        call: nudge-security-notifications.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: nudge-security-notifications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Nudge Security API — Notifications. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: search-notifications
+      description: Search notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security-notifications.get
+      outputParameters:
+      - type: object
+        mapping: $.

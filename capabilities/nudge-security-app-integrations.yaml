@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nudge Security API — App Integrations
+  description: 'Nudge Security API — App Integrations. 1 operations. Lead operation: Search app-to-app integrations. Self-contained
+    Naftiko capability covering one Nudge Security business surface.'
+  tags:
+  - Nudge Security
+  - App Integrations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NUDGE_SECURITY_API_KEY: NUDGE_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: nudge-security-app-integrations
+    baseUri: https://api.nudgesecurity.io/api/1.0
+    description: Nudge Security API — App Integrations business capability. Self-contained, no shared references.
+    resources:
+    - name: app-to-app-integrations
+      path: /app-to-app-integrations
+      operations:
+      - name: get
+        method: GET
+        description: Search app-to-app integrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.NUDGE_SECURITY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: nudge-security-app-integrations-rest
+    port: 8080
+    description: REST adapter for Nudge Security API — App Integrations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/app-to-app-integrations
+      name: app-to-app-integrations
+      description: REST surface for app-to-app-integrations.
+      operations:
+      - method: GET
+        name: get
+        description: Search app-to-app integrations
+        call: nudge-security-app-integrations.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: nudge-security-app-integrations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Nudge Security API — App Integrations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: search-app-app-integrations
+      description: Search app-to-app integrations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security-app-integrations.get
+      outputParameters:
+      - type: object
+        mapping: $.

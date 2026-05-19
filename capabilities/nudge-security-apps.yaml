@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nudge Security API — Apps
+  description: 'Nudge Security API — Apps. 3 operations. Lead operation: Search apps. Self-contained Naftiko capability covering
+    one Nudge Security business surface.'
+  tags:
+  - Nudge Security
+  - Apps
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NUDGE_SECURITY_API_KEY: NUDGE_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: nudge-security-apps
+    baseUri: https://api.nudgesecurity.io/api/1.0
+    description: Nudge Security API — Apps business capability. Self-contained, no shared references.
+    resources:
+    - name: apps
+      path: /apps
+      operations:
+      - name: get
+        method: GET
+        description: Search apps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: apps-app-category-app_id
+      path: /apps/app-category/{app_id}
+      operations:
+      - name: post
+        method: POST
+        description: Set app category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: apps-app_id
+      path: /apps/{app_id}
+      operations:
+      - name: get
+        method: GET
+        description: Get app
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.NUDGE_SECURITY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: nudge-security-apps-rest
+    port: 8080
+    description: REST adapter for Nudge Security API — Apps. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/apps
+      name: apps
+      description: REST surface for apps.
+      operations:
+      - method: GET
+        name: get
+        description: Search apps
+        call: nudge-security-apps.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps/app-category/{app-id}
+      name: apps-app-category-app-id
+      description: REST surface for apps-app-category-app_id.
+      operations:
+      - method: POST
+        name: post
+        description: Set app category
+        call: nudge-security-apps.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps/{app-id}
+      name: apps-app-id
+      description: REST surface for apps-app_id.
+      operations:
+      - method: GET
+        name: get
+        description: Get app
+        call: nudge-security-apps.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: nudge-security-apps-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Nudge Security API — Apps. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: search-apps
+      description: Search apps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security-apps.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-app-category
+      description: Set app category
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: nudge-security-apps.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-app
+      description: Get app
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security-apps.get
+      outputParameters:
+      - type: object
+        mapping: $.

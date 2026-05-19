@@ -1,0 +1,111 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nudge Security API — User Groups
+  description: 'Nudge Security API — User Groups. 2 operations. Lead operation: Search user groups. Self-contained Naftiko
+    capability covering one Nudge Security business surface.'
+  tags:
+  - Nudge Security
+  - User Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NUDGE_SECURITY_API_KEY: NUDGE_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: nudge-security-user-groups
+    baseUri: https://api.nudgesecurity.io/api/1.0
+    description: Nudge Security API — User Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: user-groups
+      path: /user-groups
+      operations:
+      - name: get
+        method: GET
+        description: Search user groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-groups-group_id-members
+      path: /user-groups/{group_id}/members
+      operations:
+      - name: get
+        method: GET
+        description: List user group members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: group_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.NUDGE_SECURITY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: nudge-security-user-groups-rest
+    port: 8080
+    description: REST adapter for Nudge Security API — User Groups. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/user-groups
+      name: user-groups
+      description: REST surface for user-groups.
+      operations:
+      - method: GET
+        name: get
+        description: Search user groups
+        call: nudge-security-user-groups.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user-groups/{group-id}/members
+      name: user-groups-group-id-members
+      description: REST surface for user-groups-group_id-members.
+      operations:
+      - method: GET
+        name: get
+        description: List user group members
+        call: nudge-security-user-groups.get
+        with:
+          group_id: rest.group_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: nudge-security-user-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Nudge Security API — User Groups. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: search-user-groups
+      description: Search user groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security-user-groups.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-user-group-members
+      description: List user group members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nudge-security-user-groups.get
+      with:
+        group_id: tools.group_id
+      outputParameters:
+      - type: object
+        mapping: $.
