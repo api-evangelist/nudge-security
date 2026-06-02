@@ -2,12 +2,20 @@
   "repo": "nudge-security",
   "feeds": [
     {
-      "source": "https://www.nudgesecurity.com/blog",
+      "source": "https://www.nudgesecurity.com/blog/rss.xml",
       "feed_url": "https://www.nudgesecurity.com/blog/rss.xml",
-      "title": "Nudge Security Blog",
-      "saved": 45
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://help.nudgesecurity.com/",
+      "feed_url": "https://help.nudgesecurity.com/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 56,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 60,
+  "fetched": "2026-06-01T23:35:02Z"
 }
