@@ -1,57 +1,73 @@
 # Nudge Security (nudge-security)
-Nudge Security is a SaaS and AI security management platform that discovers all SaaS and cloud applications used across an organization, helps security teams manage OAuth grants, enforce security policies, monitor app-to-app integrations, and reduce SaaS risk without blocking productivity.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/nudge-security/refs/heads/main/apis.yml)
+Nudge Security is a SaaS and AI security management platform that discovers all SaaS and cloud applications used across an organization, helps security teams manage OAuth grants, enforce security policies, monitor app-to-app integrations, and reduce SaaS risk without blocking productivity. The platform provides automated SaaS discovery, shadow IT detection, and security posture management.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/nudge-security/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/nudge-security/refs/heads/main/apis.yml)
 
 ## Scope
 
 - **Type:** Index
-- **Position:** Consuming
-- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Access Management, AI Security, Compliance, Governance, OAuth, SaaS Management, SaaS Security, Security, Shadow IT, SSPM
+- Access Management
+- AI Security
+- Compliance
+- Governance
+- OAuth
+- SaaS Management
+- SaaS Security
+- Security
+- Shadow IT
+- SSPM
 
 ## Timestamps
 
 - **Created:** 2026-03-16
-- **Modified:** 2026-04-28
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Nudge Security API
-The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension. It supports integration with SIEM, SOAR, and ticketing systems and allows management of custom fields and classifications. The API is rate limited to 1200 requests per 5-minute period.
 
-**Human URL:** [https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api](https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api)
+The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension. It supports integration with SIEM, SOAR, and ticketing systems, and allows management of custom fields and classifications. The API is rate limited to 1200 requests per 5-minute period.
 
-**Base URL:** `https://api.nudgesecurity.io/api/1.0`
+- **Human URL:** [https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api](https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api)
+- **Base URL:** `https://api.nudgesecurity.io/api/1.0`
 
-#### Tags:
+#### Tags
 
- - Discovery, Governance, OAuth, SaaS Security, Apps, Accounts, Events
+- Discovery
+- Governance
+- OAuth
+- SaaS Security
+- Apps
+- Accounts
+- Events
 
 #### Properties
 
 - [Documentation](https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api)
 - [Reference](https://nudgesecurity.readme.io/reference)
-- [GettingStarted](https://help.nudgesecurity.com/en/collections/10835744-integrations-and-api-configuration)
-- [OpenAPI](openapi/nudge-security-openapi.yml)
+- [Getting Started](https://help.nudgesecurity.com/en/collections/10835744-integrations-and-api-configuration)
+- [OpenAPI](openapi/nudge-security-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nudge-security.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nudge-security.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/nudge-security)
 - [Website](https://www.nudgesecurity.com/)
 - [Documentation](https://help.nudgesecurity.com/)
 - [Blog](https://www.nudgesecurity.com/blog)
 - [Pricing](https://www.nudgesecurity.com/pricing)
-- [SignUp](https://www.nudgesecurity.com/getting-started)
+- [Sign Up](https://www.nudgesecurity.com/getting-started)
 - [Integrations](https://www.nudgesecurity.com/integrations)
-- [ChangeLog](https://www.nudgesecurity.com/changelog)
-- [FAQ](https://www.nudgesecurity.com/faqs)
+- [Changelog](https://www.nudgesecurity.com/changelog)
+- [F A Q](https://www.nudgesecurity.com/faqs)
 - [Product](https://www.nudgesecurity.com/product)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
