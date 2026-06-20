@@ -6,7 +6,7 @@ description: >-
   integrations, and reduce SaaS risk without blocking productivity. The platform provides automated SaaS discovery,
   shadow IT detection, and security posture management.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Access Management
   - AI Security
