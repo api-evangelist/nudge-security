@@ -61,7 +61,7 @@ common:
     url: https://www.nudgesecurity.com/blog
   - type: Pricing
     url: https://www.nudgesecurity.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://www.nudgesecurity.com/getting-started
   - type: Integrations
     url: https://www.nudgesecurity.com/integrations
