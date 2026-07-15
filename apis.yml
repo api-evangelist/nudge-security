@@ -51,6 +51,8 @@ apis:
       - type: OpenAPI
         url: openapi/nudge-security-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/nudge-security-agentic-access.yml
   - type: TrustCenter
     url: security/nudge-security-trust-center.yml
   - type: DomainSecurity
