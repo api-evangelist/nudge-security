@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: Nudge Security Accounts Apps API
+  description: The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, playbooks, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension. It supports integration with SIEM, SOAR, and ticketing systems and allows management of custom fields and classifications. The API is rate limited to 1200 requests per 5-minute period. API tokens auto-expire after 4 weeks of no use.
+  version: '1.0'
+  contact:
+    name: Nudge Security
+    url: https://help.nudgesecurity.com/
+servers:
+- url: https://api.nudgesecurity.io/api/1.0
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Apps
+  description: Search, retrieve, and manage discovered SaaS applications.
+paths:
+  /apps:
+    get:
+      tags:
+      - Apps
+      summary: Search apps
+      description: Search and list SaaS applications discovered by Nudge Security.
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - $ref: '#/components/parameters/Search'
+      responses:
+        '200':
+          description: A paginated list of apps.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /apps/{app_id}:
+    get:
+      tags:
+      - Apps
+      summary: Get app
+      description: Retrieve a single SaaS application by ID.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      responses:
+        '200':
+          description: The requested app.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apps/app-category/{app_id}:
+    post:
+      tags:
+      - Apps
+      summary: Set app category
+      description: Assign the app to a service category.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - category
+              properties:
+                category:
+                  type: string
+                  description: Service category such as Finance, HR, Marketing, Sales, Analytics, Security.
+      responses:
+        '200':
+          description: Success
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    AppList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+    App:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+        domain:
+          type: string
+        status:
+          type: string
+        first_seen:
+          type: string
+          format: date-time
+        last_seen:
+          type: string
+          format: date-time
+  parameters:
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+    AppId:
+      name: app_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    Page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  responses:
+    Unauthorized:
+      description: Authentication error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token
+externalDocs:
+  description: Nudge Security API Reference
+  url: https://nudgesecurity.readme.io/reference

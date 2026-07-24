@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Nudge Security Accounts OAuth Grants API
+  description: The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, playbooks, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension. It supports integration with SIEM, SOAR, and ticketing systems and allows management of custom fields and classifications. The API is rate limited to 1200 requests per 5-minute period. API tokens auto-expire after 4 weeks of no use.
+  version: '1.0'
+  contact:
+    name: Nudge Security
+    url: https://help.nudgesecurity.com/
+servers:
+- url: https://api.nudgesecurity.io/api/1.0
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: OAuth Grants
+  description: Search and retrieve OAuth grants issued to applications.
+paths:
+  /oauth-grants:
+    get:
+      tags:
+      - OAuth Grants
+      summary: Search OAuth grants
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - $ref: '#/components/parameters/Search'
+      responses:
+        '200':
+          description: A paginated list of OAuth grants.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedList'
+  /oauth-grants/{grant_id}:
+    get:
+      tags:
+      - OAuth Grants
+      summary: Get OAuth grant
+      parameters:
+      - name: grant_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested OAuth grant.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    PaginatedList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+  parameters:
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    Page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token
+externalDocs:
+  description: Nudge Security API Reference
+  url: https://nudgesecurity.readme.io/reference
