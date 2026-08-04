@@ -1,0 +1,34 @@
+{
+  "provider": "nudge-security",
+  "sources": [
+    "nudge-security-accounts-api-openapi.yml",
+    "nudge-security-app-integrations-api-openapi.yml",
+    "nudge-security-apps-api-openapi.yml",
+    "nudge-security-events-api-openapi.yml",
+    "nudge-security-fields-api-openapi.yml",
+    "nudge-security-findings-api-openapi.yml",
+    "nudge-security-labels-api-openapi.yml",
+    "nudge-security-notifications-api-openapi.yml",
+    "nudge-security-oauth-grants-api-openapi.yml",
+    "nudge-security-user-groups-api-openapi.yml",
+    "nudge-security-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "nudge-security-accounts-api-openapi.yml",
+    "nudge-security-app-integrations-api-openapi.yml",
+    "nudge-security-apps-api-openapi.yml",
+    "nudge-security-events-api-openapi.yml",
+    "nudge-security-fields-api-openapi.yml",
+    "nudge-security-findings-api-openapi.yml",
+    "nudge-security-labels-api-openapi.yml",
+    "nudge-security-notifications-api-openapi.yml",
+    "nudge-security-oauth-grants-api-openapi.yml",
+    "nudge-security-user-groups-api-openapi.yml",
+    "nudge-security-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
