@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nudge Security Accounts Fields API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nudgesecurity.io/api/1.0/fields"
+          },
+          "docs": "Search fields"
+        },
+        {
+          "info": {
+            "name": "Create field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nudgesecurity.io/api/1.0/fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create field"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

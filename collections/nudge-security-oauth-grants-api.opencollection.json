@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nudge Security Accounts OAuth Grants API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth Grants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search OAuth grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nudgesecurity.io/api/1.0/oauth-grants",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search OAuth grants"
+        },
+        {
+          "info": {
+            "name": "Get OAuth grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nudgesecurity.io/api/1.0/oauth-grants/:grant_id",
+            "params": [
+              {
+                "name": "grant_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get OAuth grant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

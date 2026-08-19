@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nudge Security Accounts Labels API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search labels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nudgesecurity.io/api/1.0/labels"
+          },
+          "docs": "Search labels"
+        },
+        {
+          "info": {
+            "name": "Create label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nudgesecurity.io/api/1.0/labels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create label"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
