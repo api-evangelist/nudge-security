@@ -25,6 +25,17 @@ tags:
   - AI Security
   - Compliance
   - Governance
+  - Authentication
+  - SaaS Management
+  - SaaS Security
+  - Security
+  - Shadow IT
+  - SSPM
+tags_raw:
+  - Access Management
+  - AI Security
+  - Compliance
+  - Governance
   - OAuth
   - SaaS Management
   - SaaS Security
@@ -43,6 +54,8 @@ apis:
     https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
   baseURL: https://api.nudgesecurity.io/api/1.0
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -81,6 +94,8 @@ apis:
     https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
   baseURL: https://api.nudgesecurity.io/api/1.0
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -100,6 +115,8 @@ apis:
     https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
   baseURL: https://api.nudgesecurity.io/api/1.0
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -176,6 +193,8 @@ apis:
     https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
   baseURL: https://api.nudgesecurity.io/api/1.0
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -233,6 +252,8 @@ apis:
     https://help.nudgesecurity.com/en/articles/8890697-getting-started-with-the-nudge-security-api
   baseURL: https://api.nudgesecurity.io/api/1.0
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
