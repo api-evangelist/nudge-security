@@ -6,6 +6,18 @@ description: >-
   integrations, and reduce SaaS risk without blocking productivity. The platform provides automated SaaS discovery,
   shadow IT detection, and security posture management.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
