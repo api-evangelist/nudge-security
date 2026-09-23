@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Nudge Security Accounts Notifications API
-  description: The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, playbooks, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension. It supports integration with SIEM, SOAR, and ticketing systems and allows management of custom fields and classifications. The API is rate limited to 1200 requests per 5-minute period. API tokens auto-expire after 4 weeks of no use.
+  title: Nudge Security Notifications API
+  description: The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, playbooks, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension.
   version: '1.0'
   contact:
     name: Nudge Security
@@ -30,6 +30,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedList'
+      operationId: getNotifications
+      x-operation-id-source: derived
 components:
   schemas:
     PaginatedList:

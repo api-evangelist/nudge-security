@@ -1,17 +1,7 @@
 {
   "provider": "nudge-security",
   "sources": [
-    "nudge-security-accounts-api-openapi.yml",
-    "nudge-security-app-integrations-api-openapi.yml",
-    "nudge-security-apps-api-openapi.yml",
-    "nudge-security-events-api-openapi.yml",
-    "nudge-security-fields-api-openapi.yml",
-    "nudge-security-findings-api-openapi.yml",
-    "nudge-security-labels-api-openapi.yml",
-    "nudge-security-notifications-api-openapi.yml",
-    "nudge-security-oauth-grants-api-openapi.yml",
-    "nudge-security-user-groups-api-openapi.yml",
-    "nudge-security-users-api-openapi.yml"
+    "_original/nudge-security-openapi.yml"
   ],
   "outputs": [
     "nudge-security-accounts-api-openapi.yml",
@@ -29,6 +19,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "nudge-security-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "nudge-security-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-app-integrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-findings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-labels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-notifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-oauth-grants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-user-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nudge-security-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

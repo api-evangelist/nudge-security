@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Nudge Security Accounts Apps API
-  description: The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, playbooks, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension. It supports integration with SIEM, SOAR, and ticketing systems and allows management of custom fields and classifications. The API is rate limited to 1200 requests per 5-minute period. API tokens auto-expire after 4 weeks of no use.
+  title: Nudge Security Apps API
+  description: The Nudge Security REST API enables programmatic access to retrieve data about apps, accounts, OAuth grants, security events, fields, users, user groups, labels, notifications, findings, playbooks, app-to-app integrations, app instances, AI sessions and prompts, and the browser extension.
   version: '1.0'
   contact:
     name: Nudge Security
@@ -34,6 +34,8 @@ paths:
                 $ref: '#/components/schemas/AppList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      operationId: getApps
+      x-operation-id-source: derived
   /apps/{app_id}:
     get:
       tags:
@@ -51,6 +53,8 @@ paths:
                 $ref: '#/components/schemas/App'
         '404':
           $ref: '#/components/responses/NotFound'
+      operationId: getAppsByAppId
+      x-operation-id-source: derived
   /apps/app-category/{app_id}:
     post:
       tags:
@@ -80,47 +84,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      operationId: postAppsAppCategoryByAppId
+      x-operation-id-source: derived
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    AppList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/App'
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-    App:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        category:
-          type: string
-        domain:
-          type: string
-        status:
-          type: string
-        first_seen:
-          type: string
-          format: date-time
-        last_seen:
-          type: string
-          format: date-time
   parameters:
     Search:
       name: search
@@ -151,6 +117,46 @@ components:
         type: integer
         minimum: 1
         default: 1
+  schemas:
+    AppList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    App:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+        domain:
+          type: string
+        status:
+          type: string
+        first_seen:
+          type: string
+          format: date-time
+        last_seen:
+          type: string
+          format: date-time
   responses:
     Unauthorized:
       description: Authentication error.
