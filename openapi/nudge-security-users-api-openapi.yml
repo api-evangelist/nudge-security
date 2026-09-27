@@ -34,20 +34,6 @@ paths:
       operationId: getUsers
       x-operation-id-source: derived
 components:
-  schemas:
-    PaginatedList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
   parameters:
     Search:
       name: search
@@ -72,6 +58,20 @@ components:
         type: integer
         minimum: 1
         default: 1
+  schemas:
+    PaginatedList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http
