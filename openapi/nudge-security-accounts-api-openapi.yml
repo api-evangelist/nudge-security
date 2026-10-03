@@ -54,30 +54,6 @@ paths:
       operationId: getAccountsByAccountId
       x-operation-id-source: derived
 components:
-  parameters:
-    Search:
-      name: search
-      in: query
-      required: false
-      schema:
-        type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 50
-    Page:
-      name: page
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
     PaginatedList:
       type: object
@@ -92,6 +68,30 @@ components:
           type: integer
         total:
           type: integer
+  parameters:
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
   securitySchemes:
     bearerAuth:
       type: http
