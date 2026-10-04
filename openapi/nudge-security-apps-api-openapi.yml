@@ -87,43 +87,7 @@ paths:
       operationId: postAppsAppCategoryByAppId
       x-operation-id-source: derived
 components:
-  parameters:
-    Search:
-      name: search
-      in: query
-      required: false
-      schema:
-        type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 50
-    Page:
-      name: page
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    AppId:
-      name: app_id
-      in: path
-      required: true
-      schema:
-        type: integer
   responses:
-    BadRequest:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication error.
       content:
@@ -136,27 +100,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    AppList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/App'
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
     App:
       type: object
       properties:
@@ -176,6 +126,56 @@ components:
         last_seen:
           type: string
           format: date-time
+    AppList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    Page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+    AppId:
+      name: app_id
+      in: path
+      required: true
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       type: http
